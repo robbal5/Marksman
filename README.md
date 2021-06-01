@@ -15,7 +15,7 @@ In addition, this project will include:
 * Links to external Github and Linkedin pages
 
 ## Wireframes and File Structure
-![image info](./srsc/images/js_wireframe.png)
+![image info](./src/images/js_wireframe.png)
 * src
     * scripts
          * headerBar.js
