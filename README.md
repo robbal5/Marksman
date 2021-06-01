@@ -28,15 +28,15 @@ In addition, this project will include:
               * target.png
    * index.js
    * scripts
-         * HeaderBar.js
-         * Game.js
-         * Shooter.js
-         * Projectile.js
-         * Target.js
-         * Game.js
-         * Scoreboard.js
-         * GameFactors.js
-         * Music.js
+           * HeaderBar.js
+           * Game.js
+           * Shooter.js
+           * Projectile.js
+           * Target.js
+           * Game.js
+           * Scoreboard.js
+           * GameFactors.js
+           * Music.js
    * styles
          * index.scss
 
