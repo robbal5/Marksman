@@ -17,6 +17,16 @@ In addition, this project will include:
 ## Wireframes and File Structure
 
 * src
+    * scripts
+           * HeaderBar.js
+           * Game.js
+           * Shooter.js
+           * Projectile.js
+           * Target.js
+           * Game.js
+           * Scoreboard.js
+           * GameFactors.js
+           * Music.js
     * assets
          * audio
               * fire.mp3
@@ -27,16 +37,6 @@ In addition, this project will include:
               * projectile.png
               * target.png
    * index.js
-   * scripts
-           * HeaderBar.js
-           * Game.js
-           * Shooter.js
-           * Projectile.js
-           * Target.js
-           * Game.js
-           * Scoreboard.js
-           * GameFactors.js
-           * Music.js
    * styles
          * index.scss
 
