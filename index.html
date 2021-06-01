@@ -5,15 +5,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+        integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fauna+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./dist/main.css" />
-    <title>JS Project Skeleton</title>
+    
+    <title>Marksman</title>
 </head>
 
 <body>
-    <button id="canvas-demo">Canvas Demo</button>
-    <button id="DOM-demo">DOM Demo</button>
-    <!-- <img class="js-stitch-yoda-src" width="20%" style="margin:2rem auto;display:none;"
-        src="dist/images/yoda-stitch.jpg"> -->
+    <div class='canvas-images'>
+        <img id='sun-image' src="src/images/sun.png" alt="">
+    </div>
+    <nav class='header-nav'>
+        <div class='header-how-to'>
+            <a class='how-to-link' href="">How To Play</a>
+        </div>
+        <div class='header-title'>
+            <h1 class='title'>Marksman</h1>
+        </div>
+        <div class='header-about-list'>
+            <ul>
+                <li class='header-about-item'><a href="https://www.linkedin.com/in/robert-s-balistreri/" target='_blank'><i class="fab fa-linkedin-in fa-2x"></i></a></li>
+                <li class='header-about-item'><a href="https://github.com/robbal5/Marksman" target='_blank'><i class="fab fa-github fa-2x"></i></a></li>
+                <li class='header-about-item'>Designed by: Robby Balistreri</li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class='modal' id='modal'>
+        <div class='modal-background modal-exit'></div>
+        <div class='modal-container'>
+            <h1>How to Play</h1>
+            <button class='modal-close modal-exit'>X</button>
+            <p>Marksman is an interactive shooting game inspired by the classic Tanks arcade game. Users can customize their experience, including the number of targets, shots, and landscape to play on. Ready, aim, fire! </p>
+            <h2>Controls</h2>
+            <p>The arrow keys control the shot power (up to inrease, down to decrease) and trajectory (left and right). Once the shot is prepared, click space to fire!</p>
+            <h2>Win conditions</h2>
+            <p>Destroy all the targets before running out of shots and you win!</p>
+        </div>
+
+    </div>
+    <div class='canvas-container'>
+        <canvas class='canvas' id='canvas'></canvas>
+    </div>
+    <div class='user-interaction-container'>
+        <form class='user-interaction-form'>
+            <div>
+                <label for="shots">Number of shots:</label>
+                <select class='select' name="shots" id="shots">
+                    <option selected value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div>
+                <label class='select' for="shots">Number of targets:</label>
+                <select name="targets" id="targets">
+                    <option selected value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <button class='start-button'>Start!</button>
+        </form>
+
+    </div>
+
+
     <script src="./dist/main.js"></script>
 </body>
 
