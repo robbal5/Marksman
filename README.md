@@ -18,15 +18,15 @@ In addition, this project will include:
 
 * src
     * scripts
-           + HeaderBar.js
-           + Game.js
-           * Shooter.js
-           * Projectile.js
-           * Target.js
-           * Game.js
-           * Scoreboard.js
-           * GameFactors.js
-           * Music.js
+         * headerBar.js
+         * game.js
+         * shooter.js
+         * projectile.js
+         * target.js
+         * game.js
+         * scoreboard.js
+         * gameFactors.js
+         * music.js
     * assets
          * audio
               * fire.mp3
@@ -37,8 +37,8 @@ In addition, this project will include:
               * projectile.png
               * target.png
    * index.js
-   * styles
-         * index.scss
+   * styles  
+       * index.scss
 
 
 ## Architecture and Technology
