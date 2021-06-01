@@ -1,70 +1,251 @@
-// MIXINS && VARIABLES
 
-@mixin basic-box-shadow($color) {
-  box-shadow: 3px 3px 5px 5px $color, 1px 0px 1px $color;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+$blue: #00539CFF;
+$yellow: rgb(247, 215, 128);
+$offwhite: #f8f8ff;
+$text:  'Fauna One', serif;
+$heading: 'Cinzel Decorative', cursive;
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-$main-color: green;
-$accent-color: darken($main-color, 20%);
-$background-color: lighten($main-color, 40%);
-
-// LAYOUT
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
 body {
-  background-color: $background-color;
-  color: $main-color;
-  display: flex;
-  flex-direction: column;
+  background-color: $yellow;
+  
+  margin: auto;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  width: 100%;
 }
 
-.center {
+/* canvas Images*/
+.canvas-images {
+  display: none;
+}
+
+/* NAV HEADER */
+
+.header-nav {
+  color: $offwhite;
+  height: 100px;
+  background-color: $blue;
+  border-bottom: 1px solid lightgray;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
+  box-shadow: 2px 2px 2px lightgray;
+  font-family: $text;
+  
+
+  div {
+    width: 30%;
+    
+  }
 }
 
-// COMPONENTS
-.card {
-  background: white;
-  height: 50vh;
-  width: 50vw;
-  border-radius: 15px;
-  margin-top: 15px;
-  @include basic-box-shadow($accent-color);
-}
-
-.rando {
-  display: flex;
-  flex-direction: column;
-
-  btn {
-    height: 2em;
-    background: magenta;
-    color: white;
-    width: 10vmax;
+.header-how-to {
+  align-items: center;
+  
+  .how-to-link {
+    cursor: pointer;
     text-align: center;
-    padding-top: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 20px;
-    line-height: 1.5;
+    margin: auto;
+    &:hover{
+      font-weight: 700;
+    } 
+  }
+}
+
+.header-title {
+
+  .title{
+    font-family: $heading;
+    font-size: 50px;
+    text-align: center;
+  }
+}
+
+.header-about-list {
+
+  ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  
+
+  i {
     &:hover {
-      cursor: pointer;
+      color: $yellow;
+      transition: 0.8s;
     }
   }
+}
 
-  p {
-    font-family: Arial, Helvetica, sans-serif;
-    color: blueviolet;
-    font-weight: 500;
-    font-size: 5vmin;
+/* Canvas*/
+
+.canvas-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+}
+.canvas {
+  width: 1000px;
+  height: 100%;
+  
+  background-color: lightskyblue;
+  
+}
+
+/* User Form*/
+
+.user-interaction-form {
+  width: 800px;
+  margin: auto;
+  padding-top: 15px;
+  font-family: $text;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.start-button {
+  padding: 10px 15px 10px 15px;
+  background-color: $offwhite;
+  font-family: $heading;
+  font-size: 14px;
+  border: 1px solid gray;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: $blue;
+    color: $yellow;
+    transition: 0.8s;
   }
 }
 
-.image-card {
-  background-position: center;
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+
+    &.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
 }
 
-// TYPOGRAPHY
-h2 {
-  font-size: 3rem;
+.modal-background {
+  position: absolute;
+  background: gray;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
 }
+
+.modal-container {
+  width: 500px;
+  height: 250px;
+  background-color:$blue;
+  position: relative;
+  padding: 30px;
+  border-radius: 30px;
+  color: $yellow;
+  margin-top: 200px;
+
+  h1 {
+    font-family: $heading;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    font-weight: bolder;
+
+  }
+
+  h2 {
+    font-family: $heading;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px;
+    }
+
+  p {
+    font-family: $text;
+    font-size: 13px;
+    text-align: center;
+    
+  }
+}
+
+.modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: black;
+  font-weight: bolder;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+
+
