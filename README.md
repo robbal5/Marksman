@@ -18,8 +18,8 @@ In addition, this project will include:
 
 * src
     * scripts
-           * HeaderBar.js
-           * Game.js
+           + HeaderBar.js
+           + Game.js
            * Shooter.js
            * Projectile.js
            * Target.js
