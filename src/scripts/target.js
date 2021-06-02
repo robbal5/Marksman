@@ -8,22 +8,24 @@ export class Target {
         this.yPos = (Math.random() * 50) + 10;
         this.state = 1;
         this.flyPos = 0;
+        this.range = Math.floor(Math.random() * 100);
+        this.size = 20;
     }
 
     drawTarget(canvas, ctx) {
-        if (this.flyPos < 10) {
-            if (this.flyPos == 0) {
-                this.yPos +=5;
-            }
-            ctx.drawImage(this.flyUp, this.xPos, this.yPos, 20,20);
+        if (this.flyPos < this.range/2) {
+
+            this.yPos += 1;
+            ctx.drawImage(this.flyUp, this.xPos, this.yPos, this.size,this.size);
             this.flyPos +=1
+
         } else {
-            if (this.flyPos == 10) {
-                this.yPos -=5;
-            }
-            ctx.drawImage(this.flyDown, this.xPos, this.yPos, 20, 20);
+
+            this.yPos -= 1;
+            ctx.drawImage(this.flyDown, this.xPos, this.yPos, this.size, this.size);
             this.flyPos +=1;
-            if (this.flyPos > 20) {
+            
+            if (this.flyPos > this.range) {
                 this.flyPos = 0;
             }
             
