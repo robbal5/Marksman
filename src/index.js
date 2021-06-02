@@ -5,6 +5,7 @@ import {Cannon} from './scripts/cannon'
 import {Target} from './scripts/target'
 import { Projectile } from "./scripts/projectile";
 import { Game } from "./scripts/game";
+import { gameOver } from "./scripts/gameover";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         
-        requestAnimationFrame(animate);
+        
 
         now = Date.now();
         elapsed = now - then;
@@ -63,6 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         game.drawGame(canvas, ctx)
             
+        }
+        if (game.gameWon || game.gameLost) {
+            gameOver(game, ctx, canvas);
+        } else{
+            requestAnimationFrame(animate);
         }
         
     }
@@ -101,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         game.startGame();
         startAnimating(30);
         document.getElementById('start-button').innerHTML = 'Restart';
+        canvas.classList.remove('lost', 'won')
     })
 
    

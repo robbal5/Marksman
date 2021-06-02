@@ -97,7 +97,7 @@ export class Game {
         let that = this;
         let collision = false;
         let result;
-        Object.values(this.projectiles).forEach((projectile) => {
+        Object.values(this.projectiles).filter(proj => proj.state == 1).forEach((projectile) => {
             result = projectile.checkCollisions(this.targets.filter(target => target.state == 1), canvas, that);
             if (result) {
                 collision = true;
@@ -123,5 +123,11 @@ export class Game {
         ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
         ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
         ctx.fillText(`Score: ${this.score}`, 250, 144);
+
+        if (this.numTargets < 1) {
+            this.gameWon = true;
+        } else if (this.numShots < 1 && Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1){
+            this.gameLost = true;
+        }
     }
 }
