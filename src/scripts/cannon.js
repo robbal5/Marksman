@@ -10,6 +10,7 @@ export class Cannon {
         this.frameY = 50,
         this.firing = false,
         this.rotation = 45;
+        this.state = 0;
     }
 
     drawCannon(canvas, ctx) {
@@ -18,9 +19,15 @@ export class Cannon {
             // ctx.drawImage(this.picture, 0,0, 30, 30)
             ctx.translate(canvas.width/2, canvas.height/2)
             ctx.rotate(-this.rotation * 0.01745)
-            ctx.drawImage(this.picture, 0, 0, 40, 40, this.x, this.y, 17, 17)
+            ctx.drawImage(this.picture, 60*(Math.floor(this.state/3)), 80, 60, 35, this.x, this.y, 25, 12)
             ctx.translate(0,0)
             ctx.restore()
+            let newState = this.state + 1;
+            if (newState < 24){
+                this.state +=1;
+            } else {
+                this.state = 0
+            }
         
     }
 
