@@ -20,7 +20,7 @@ export const initialBackground = (canvas, ctx) => {
         })
 
     }
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = 'darkolivegreen';
     ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
     ctx.fillStyle = 'black';
     ctx.font = '15px Times New Roman';

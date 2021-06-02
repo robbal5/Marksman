@@ -94,6 +94,9 @@ a {
 
 .header-how-to {
   align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   
   .how-to-link {
     cursor: pointer;
@@ -102,6 +105,16 @@ a {
     &:hover{
       font-weight: 700;
     } 
+  }
+  a {
+    text-align: center;
+  }
+  i {
+    
+    &:hover {
+      color: $yellow;
+      transition: 0.8s;
+    }
   }
 }
 
@@ -145,11 +158,10 @@ a {
   width: 1000px;
   height: 100%;
   border-radius: 25px;
-  background-color: black;
+  
   margin: 20px;
   
-  background-color: lightskyblue;
-  
+background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));  
 }
 
 /* User Form*/

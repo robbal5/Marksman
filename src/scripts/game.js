@@ -12,13 +12,15 @@ export class Game {
         this.targets = [];
         this.projectiles = {};
         this.score = 0;
-        this.currentPower = 30;
+        this.currentPower = 50;
         this.currentAngle = 45;
-        this.previousShotsHit = 0;
+        this.previousShotsHit = 1;
         this.clouds = clouds;
         this.sun = new Image();
         this.sun.src = '../src/images/sun.png';
         this.firing = false;
+        this.gameWon = false;
+        this.gameLost = false;
 
     }
 
@@ -58,17 +60,15 @@ export class Game {
             }
         }
         if (key == ' ') {
-            // this.projectiles[this.numShots] = new Projectile(this.currentPower, this.currentAngle);
-            // this.numShots -= 1;
             this.firing = true;
         }
     }
 
     drawGame(canvas, ctx) {
-        debugger;
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(this.sun, canvas.width - 45, 0, 35, 35);
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = 'darkolivegreen';
         ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
         this.clouds.forEach((cloud) => {
             cloud.moveCloud(canvas, ctx);
@@ -90,17 +90,36 @@ export class Game {
         }
         // this.firing = this.cannon.drawCannon(canvas, ctx, this.firing);
         this.targets.forEach((target) => {
-            target.drawTarget(canvas, ctx);
+            if (target.state == 1) {
+                target.drawTarget(canvas, ctx);
+            }
         })
+        let that = this;
+        let collision = false;
+        let result;
         Object.values(this.projectiles).forEach((projectile) => {
-            projectile.drawProjectile(canvas, ctx);
+            result = projectile.checkCollisions(this.targets.filter(target => target.state == 1), canvas, that);
+            if (result) {
+                collision = true;
+            }
+            if (projectile.state == 1) {
+                projectile.drawProjectile(canvas, ctx);
+            }
         })
 
+        if (collision) {
+            debugger;
+            this.score += (10 * this.previousShotsHit);
+            this.previousShotsHit += 1;
+            this.numTargets -= 1;
+        }
+
         //TEXT
-        ctx.font = '10px Times New Roman';
-        ctx.fillStyle = 'Black';
+        ctx.font = '9px Helvetica';
+        ctx.fillStyle = 'white';
         ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
-        ctx.fillText(`Power: ${this.currentPower}`, 5, 30)
+        ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
+        ctx.fillText(`Score: ${this.score}`, 5, 30)
         ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
         ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
         ctx.fillText(`Score: ${this.score}`, 250, 144);

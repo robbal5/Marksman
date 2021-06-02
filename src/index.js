@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Start game button
     const startButton = document.getElementById('start-button');
     startButton.addEventListener('click',(e) => {
-        debugger;
+        
         e.preventDefault();
         gameStarted = true;
         let shots = document.getElementById('shots').value;

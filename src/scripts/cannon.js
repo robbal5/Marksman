@@ -41,7 +41,7 @@ export class Cannon {
     }
 
     rotateCannon(bool){
-        debugger;
+        
         if (bool){
             let newValue = this.rotation - 1;
             if (newValue >= 0) {
@@ -50,7 +50,7 @@ export class Cannon {
                 let standardRadians = 19.7 * (0.01745);
                 this.x = -150*(Math.cos(radians-standardRadians))
                 this.y = -150*(Math.sin(radians - standardRadians))
-                debugger;
+                
             }
         } else {
             let newValue = this.rotation + 1;
