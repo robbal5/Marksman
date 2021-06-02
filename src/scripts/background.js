@@ -23,7 +23,7 @@ export const initialBackground = (canvas, ctx) => {
     ctx.fillStyle = 'green';
     ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
     ctx.fillStyle = 'black';
-    ctx.font = '20px Fantasy';
-    ctx.fillText('Click Start to Begin', 60, 80)
+    ctx.font = '15px Times New Roman';
+    ctx.fillText('Click Start to Begin', 80, 80)
     return cloudObjs;
 }

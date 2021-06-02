@@ -4,7 +4,7 @@ export class Projectile {
         this.projectile.src = '../src/images/ball.png'; 
         this.xPos = 17;
         this.yPos = 110;
-        this.power = power;
+        this.power = power/2;
         this.angle = angle;
         this.dy = this.power * Math.sin(this.angle * 0.01745);
         this.dx = this.power/2 * Math.cos(this.angle*0.01745);

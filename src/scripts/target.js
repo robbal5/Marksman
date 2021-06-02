@@ -4,11 +4,11 @@ export class Target {
         this.flyUp.src = '../src/images/flyup_target2.png';
         this.flyDown = new Image();
         this.flyDown.src = '../src/images/flydown_target2.png';
-        this.xPos = (Math.random() * 150) + 30;
+        this.xPos = (Math.random() * 200) + 80;
         this.yPos = (Math.random() * 50) + 10;
         this.state = 1;
         this.flyPos = 0;
-        this.range = Math.floor(Math.random() * 100);
+        this.range = Math.floor(Math.random() * 100) + 30;
         this.size = 20;
     }
 
@@ -24,7 +24,7 @@ export class Target {
             this.yPos -= 1;
             ctx.drawImage(this.flyDown, this.xPos, this.yPos, this.size, this.size);
             this.flyPos +=1;
-            
+
             if (this.flyPos > this.range) {
                 this.flyPos = 0;
             }
