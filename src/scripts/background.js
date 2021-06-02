@@ -14,13 +14,16 @@ export const initialBackground = (canvas, ctx) => {
                         new Cloud(100, 5, 300, 275, 300, 160, 30, 20, clouds )]
     clouds.onload = () => {
         cloudObjs.forEach(cloud => {
-            if ([1,2][Math.floor(Math.random() * 3)] % 2 != 0) return;
+            // if ([1,2][Math.floor(Math.random() * 3)] % 2 != 0) return;
 
             ctx.drawImage(clouds, cloud.cropStartX, cloud.cropStartY, cloud.cropEndX, cloud.cropEndY, cloud.posX, cloud.posY, cloud.sizeX, cloud.sizeY)
         })
 
     }
     ctx.fillStyle = 'green';
-    ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
+    ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
+    ctx.fillStyle = 'black';
+    ctx.font = '20px Fantasy';
+    ctx.fillText('Click Start to Begin', 60, 80)
     return cloudObjs;
 }

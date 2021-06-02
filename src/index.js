@@ -3,6 +3,7 @@ import {setupModal} from './scripts/modal';
 import {initialBackground} from './scripts/background'
 import {Cannon} from './scripts/cannon'
 import {Target} from './scripts/target'
+import { Projectile } from "./scripts/projectile";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cannon = new Cannon();
     cannon.drawCannon(canvas, ctx);
     const target = new Target();
+    const projectile = new Projectile(30, 30);
+    
+    let fire = false;
+
 
     let fps, interval, startTime, now, then, elapsed;
 
@@ -46,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             cannon.drawCannon(canvas, ctx);
             target.drawTarget(canvas, ctx);
+            
+            if (fire) {
+                projectile.drawProjectile(canvas, ctx);  
+            }
+            
         }
         
     }
@@ -58,8 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'ArrowRight') {
             cannon.rotateCannon(true);
         }
+        if (event.key === ' '){
+             fire = true;
+             
+        }
     })
 
-    startAnimating(30);
+    // startAnimating(30);
    
 })
