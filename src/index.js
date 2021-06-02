@@ -4,6 +4,8 @@ import {initialBackground} from './scripts/background'
 import {Cannon} from './scripts/cannon'
 import {Target} from './scripts/target'
 import { Projectile } from "./scripts/projectile";
+import { Game } from "./scripts/game";
+import { gameOver } from "./scripts/gameover";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let fire = false;
 
+    //ADDING GAME
+    let gameStarted = false;
+    let game;
+
 
     let fps, interval, startTime, now, then, elapsed;
 
@@ -32,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         
-        requestAnimationFrame(animate);
+        
 
         now = Date.now();
         elapsed = now - then;
@@ -41,39 +47,68 @@ document.addEventListener('DOMContentLoaded', () => {
             
             then = now - (elapsed % interval);
 
-            ctx.clearRect(0,0, canvas.width, canvas.height);
-            ctx.drawImage(sun, canvas.width - 45, 0, 35, 35);
-            ctx.fillStyle = 'green';
-            ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
-            clouds.forEach((cloud) => { 
-                    cloud.moveCloud(canvas, ctx);
-                    cloud.drawCloud(canvas, ctx);
-            })
-            cannon.drawCannon(canvas, ctx);
-            target.drawTarget(canvas, ctx);
+            // ctx.clearRect(0,0, canvas.width, canvas.height);
+            // ctx.drawImage(sun, canvas.width - 45, 0, 35, 35);
+            // ctx.fillStyle = 'green';
+            // ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
+            // clouds.forEach((cloud) => { 
+            //         cloud.moveCloud(canvas, ctx);
+            //         cloud.drawCloud(canvas, ctx);
+            // })
+            // cannon.drawCannon(canvas, ctx);
+            // target.drawTarget(canvas, ctx);
             
-            if (fire) {
-                projectile.drawProjectile(canvas, ctx);  
-            }
+            // if (fire) {
+            //     projectile.drawProjectile(canvas, ctx);  
+            // }
+
+        game.drawGame(canvas, ctx)
             
+        }
+        if (game.gameWon || game.gameLost) {
+            gameOver(game, ctx, canvas);
+        } else{
+            requestAnimationFrame(animate);
         }
         
     }
 
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', ({key}) => {
         
-        if (event.key === 'ArrowLeft') {
-            cannon.rotateCannon(false);
-        }
-        if (event.key === 'ArrowRight') {
-            cannon.rotateCannon(true);
-        }
-        if (event.key === ' '){
-             fire = true;
+        // if (event.key === 'ArrowLeft') {
+        //     cannon.rotateCannon(false);
+        // }
+        // if (event.key === 'ArrowRight') {
+        //     cannon.rotateCannon(true);
+        // }
+        // if (event.key === ' '){
+        //      fire = true;
              
-        }
+        // }
+
+        game.updateGame(key)
+
+
     })
 
-    // startAnimating(30);
+    // if (gameStarted){
+    //     startAnimating(30);
+    // }
+
+    //Start game button
+    const startButton = document.getElementById('start-button');
+    startButton.addEventListener('click',(e) => {
+        
+        e.preventDefault();
+        gameStarted = true;
+        let shots = document.getElementById('shots').value;
+        let targets = document.getElementById('targets').value;
+        game = new Game(shots,targets,clouds);
+        game.startGame();
+        startAnimating(30);
+        document.getElementById('start-button').innerHTML = 'Restart';
+        canvas.classList.remove('lost', 'won')
+    })
+
    
 })

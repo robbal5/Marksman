@@ -13,26 +13,35 @@ export class Cannon {
         this.state = 0;
     }
 
-    drawCannon(canvas, ctx) {
+    drawCannon(canvas, ctx, firing) {
         
             ctx.save()
             // ctx.drawImage(this.picture, 0,0, 30, 30)
             ctx.translate(canvas.width/2, canvas.height/2)
             ctx.rotate(-this.rotation * 0.01745)
-            ctx.drawImage(this.picture, 60*(Math.floor(this.state/3)), 80, 60, 35, this.x, this.y, 25, 12)
-            ctx.translate(0,0)
-            ctx.restore()
-            let newState = this.state + 1;
-            if (newState < 24){
-                this.state +=1;
+            if (firing) {
+                ctx.drawImage(this.picture, 60*(Math.floor(this.state/3)), 80, 60, 35, this.x, this.y, 25, 12)
+                ctx.translate(0,0)
+                ctx.restore()
+                let newState = this.state + 1;
+                if (newState < 24){
+                    this.state +=1;
+                    // return true;
+                } else {
+                    this.state = 0
+                    // return false;
+                }
+                return this.state;
             } else {
-                this.state = 0
+                ctx.drawImage(this.picture, 60 * (Math.floor(this.state / 3)), 80, 60, 35, this.x, this.y, 25, 12)
+                ctx.translate(0, 0)
+                ctx.restore()
             }
         
     }
 
     rotateCannon(bool){
-        debugger;
+        
         if (bool){
             let newValue = this.rotation - 1;
             if (newValue >= 0) {
@@ -41,7 +50,7 @@ export class Cannon {
                 let standardRadians = 19.7 * (0.01745);
                 this.x = -150*(Math.cos(radians-standardRadians))
                 this.y = -150*(Math.sin(radians - standardRadians))
-                debugger;
+                
             }
         } else {
             let newValue = this.rotation + 1;

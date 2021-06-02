@@ -4,13 +4,15 @@ export class Projectile {
         this.projectile.src = '../src/images/ball.png'; 
         this.xPos = 17;
         this.yPos = 110;
-        this.power = power;
+        this.power = power/2;
         this.angle = angle;
         this.dy = this.power * Math.sin(this.angle * 0.01745);
         this.dx = this.power/2 * Math.cos(this.angle*0.01745);
         this.xSize = 10;
         this.ySize = 10;
+        this.hit = false;
         this.timer = 0;
+        this.state = 1;
     }
 
     // update(power, angle) {
@@ -24,10 +26,42 @@ export class Projectile {
     // }
 
     drawProjectile(canvas, ctx) {
-        ctx.drawImage(this.projectile, 0, 0, 100, 100, this.xPos, this.yPos, this.xSize, this.ySize);
+        if (!this.hit) {
+            ctx.drawImage(this.projectile, 0, 0, 100, 100, this.xPos, this.yPos, this.xSize, this.ySize);
             this.xPos += this.dx/2;
             this.dy -= 1;
             this.yPos -= this.dy/3;
-        this.timer += 1;
+        } else {
+            ctx.drawImage(this.projectile, 60 * Math.floor(this.timer/32), 60* Math.floor(this.timer/4), 60, 60, this.xPos, this.yPos, 30, 30)
+            this.timer += 1
+            if (this.timer > 64) {
+                this.state = 0
+            }
+        }
+    }
+
+    checkCollisions(targets, canvas, game) {
+        let that = this;
+        if (this.yPos > canvas.height - 25) {
+            this.state = 0;
+            game.previousShotsHit = 1;
+            return false;
+        }
+        let result = false;
+        
+        targets.forEach((target) => {
+            if (target.xPos - (that.xPos + that.xSize) < -5
+             && target.xPos + target.size - that.xPos > 0
+             && target.yPos - (that.yPos + that.ySize) < -5
+             && target.yPos + target.size - that.yPos > 0 
+             && !that.hit){
+                 this.hit = true;
+                 this.yPos -= 8;
+                that.projectile.src = '../src/images/explosion.png';
+                target.state = 0;
+                result = true;
+            }
+        })
+        return result;
     }
 }
