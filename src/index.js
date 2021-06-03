@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
 
-    document.addEventListener('keydown', ({key}) => {
-        
+    document.addEventListener('keydown', (e) => {
+        const validGameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '];
         // if (event.key === 'ArrowLeft') {
         //     cannon.rotateCannon(false);
         // }
@@ -85,8 +85,41 @@ document.addEventListener('DOMContentLoaded', () => {
         //      fire = true;
              
         // }
+        
+        if (validGameKeys.includes(e.key)){
+            game.updateGame(e.key)
+        } else if(e.key == 'Enter') {
+            e.preventDefault();
+            gameStarted = true;
+            let difficulty = document.getElementById('difficulty').value;
+            let multiplayer = document.getElementById('multiplayer').value;
+            let multValue = multiplayer == 'true' ? true : false;
+            debugger;
+            switch (difficulty) {
+                case 'easy':
+                    game = new Game(4, 2, clouds, multValue);
+                    break;
+                case 'medium':
+                    game = new Game(6, 4, clouds, multValue);
+                    break;
+                case 'hard':
+                    game = new Game(8, 6, clouds, multValue);
+                    break;
+                case 'impossible':
+                    game = new Game(10, 10, clouds, multValue);
+                    break;
+                default:
+                    break;
+            }
+            // game = new Game(shots,targets,clouds);
+            game.startGame();
+            startAnimating(30);
+            // document.getElementById('start-button').innerHTML = 'Restart';
+            canvas.classList.remove('lost', 'won')
+        } else {
+            return;
+        }
 
-        game.updateGame(key)
 
 
     })
@@ -96,34 +129,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     //Start game button
-    const startButton = document.getElementById('start-button');
-    startButton.addEventListener('click',(e) => {
+    // const startButton = document.getElementById('start-button');
+    // startButton.addEventListener('click',(e) => {
         
-        e.preventDefault();
-        gameStarted = true;
-        let difficulty = document.getElementById('difficulty').value;
-        switch (difficulty) {
-            case 'easy':
-                game = new Game(4, 1, clouds);
-                break;
-            case 'medium':
-                game = new Game(6, 3, clouds);
-                break;
-            case 'hard':
-                game = new Game(8, 5, clouds);
-                break;
-            case 'impossible':
-                game = new Game(10, 9, clouds);
-                break;
-            default:
-                break;
-        }
-        // game = new Game(shots,targets,clouds);
-        game.startGame();
-        startAnimating(30);
-        document.getElementById('start-button').innerHTML = 'Restart';
-        canvas.classList.remove('lost', 'won')
-    })
+    //     e.preventDefault();
+    //     gameStarted = true;
+    //     let difficulty = document.getElementById('difficulty').value;
+    //     let multiplayer = document.getElementById('multiplayer').value;
+    //     let multValue = multiplayer == 'true' ? true : false;
+    //     debugger;
+    //     switch (difficulty) {
+    //         case 'easy':
+    //             game = new Game(4, 2, clouds, multValue);
+    //             break;
+    //         case 'medium':
+    //             game = new Game(6, 4, clouds, multValue);
+    //             break;
+    //         case 'hard':
+    //             game = new Game(8, 6, clouds, multValue);
+    //             break;
+    //         case 'impossible':
+    //             game = new Game(10, 10, clouds, multValue);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     // game = new Game(shots,targets,clouds);
+    //     game.startGame();
+    //     startAnimating(30);
+    //     document.getElementById('start-button').innerHTML = 'Restart';
+    //     canvas.classList.remove('lost', 'won')
+    // })
 
    
 })

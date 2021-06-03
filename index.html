@@ -63,6 +63,14 @@
                     <option value="impossible">Impossible</option>
                 </select>
             </div>
+            <div>
+                <label for="multiplayer">Players</label>
+                <select class='select' name="multiplayer" id="multiplayer">
+                    <option value="false">1-player</option>
+                    <option value="true">2-player</option>
+
+                </select>
+            </div>
             <!-- <div>
                 <label class='select' for="shots">Number of targets:</label>
                 <select name="targets" id="targets">
@@ -74,13 +82,17 @@
                 </select>
             </div> -->
 
-            <button id='start-button' class='start-button'>Start!</button>
+            <!-- <button id='start-button' class='start-button'>Start!</button> -->
             <div id='highscore'>High Score: 0</div>
         </form>
 
     </div>
     <footer class='footer'>
-
+        <div class='sounds'>
+            <audio preload='auto' controls='none' id='cannon-sound' src="./src/sounds/cannon.mp3"></audio>
+            <audio preload='auto' controls='none' id='hit-sound' src="./src/sounds/hit.mp3"></audio>
+            <audio preload='auto' controls='none' id='miss-sound' src="./src/sounds/miss.mp3"></audio>
+        </div>
     </footer>
 
 

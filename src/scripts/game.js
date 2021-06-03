@@ -4,7 +4,7 @@ import { Projectile } from "./projectile";
 import {Cloud} from './clouds';
 
 export class Game {
-    constructor(numShots, numTargets, clouds) {
+    constructor(numShots, numTargets, clouds, multiplayer) {
         
         this.numShots = numShots;
         this.numTargets = numTargets;
@@ -21,13 +21,29 @@ export class Game {
         this.firing = false;
         this.gameWon = false;
         this.gameLost = false;
+        this.multiplayer = multiplayer;
+        this.targets2 = [];
+        this.projectiles2 = [];
+        this.score2 = 0;
+        this.currentPlayer = 1;
+        this.numTargets2 = numTargets;
+        this.winner = undefined;
+        this.winningScore = undefined;
         
 
     }
 
     startGame() {
+        let positionsX = [100, 130, 160, 185, 210, 230, 255, 270, 285]
+        let positionsY = [10, 20, 30, 40 ,50, 10, 20, 30, 40]
+        let target;
         for (let i = 0; i < this.numTargets; i++) {
-            this.targets.push(new Target());
+            let xPos = positionsX.shift();
+            let yPos = positionsY.shift();
+            this.targets.push(new Target(xPos, yPos, 1));
+            if (this.multiplayer) {
+                this.targets2.push(new Target(xPos, yPos, 2));
+            }
         }
     }
 
@@ -61,7 +77,14 @@ export class Game {
             }
         }
         if (key == ' ' && this.numShots > 0) {
-            this.firing = true;
+            if (this.multiplayer) {
+                if (Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1 &&
+                    Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1){
+                        this.firing = true;
+                    }
+            } else{
+                this.firing = true;
+            }
         }
     }
 
@@ -78,8 +101,18 @@ export class Game {
         if (this.firing) {
             let value = this.cannon.drawCannon(canvas, ctx, this.firing);
             if (value == 10) {
-                this.projectiles[this.numShots] = new Projectile(this.currentPower, this.currentAngle);
-                this.numShots -= 1;
+                if (this.multiplayer) {
+                    if (this.currentPlayer == 1) {
+                        this.projectiles[this.numShots] = new Projectile(this.currentPower, this.currentAngle);
+                    } else {
+                        this.projectiles2[this.numShots] = new Projectile(this.currentPower, this.currentAngle);
+                        this.numShots -= 1;
+                    }
+                } else{
+                    this.projectiles[this.numShots] = new Projectile(this.currentPower, this.currentAngle);
+                    this.numShots -= 1;
+                }
+
             }
             if (value == 0) {
                 this.firing = false;
@@ -89,46 +122,146 @@ export class Game {
         } else {
             this.cannon.drawCannon(canvas, ctx, this.firing);
         }
-        // this.firing = this.cannon.drawCannon(canvas, ctx, this.firing);
-        this.targets.forEach((target) => {
-            if (target.state == 1) {
-                target.drawTarget(canvas, ctx);
+        debugger;
+        if (this.multiplayer) {
+            if (this.currentPlayer == 1) {
+                this.targets.forEach((target) => {
+                    if (target.state == 1) {
+                        target.drawTarget(canvas, ctx);
+                    }
+                })
+            } else {
+                this.targets2.forEach((target) => {
+                    if (target.state == 1) {
+                        target.drawTarget(canvas, ctx);
+                    }
+                })
             }
-        })
+
+        } else {
+            this.targets.forEach((target) => {
+                if (target.state == 1) {
+                    target.drawTarget(canvas, ctx);
+                }
+            })
+        }
+       
         let that = this;
         let collision = false;
         let result;
-        Object.values(this.projectiles).filter(proj => proj.state == 1).forEach((projectile) => {
-            result = projectile.checkCollisions(this.targets.filter(target => target.state == 1), canvas, that);
-            if (result) {
-                collision = true;
-            }
-            if (projectile.state == 1) {
-                projectile.drawProjectile(canvas, ctx);
-            }
-        })
+        if (this.multiplayer) {
+            if (this.currentPlayer == 1) {
+                Object.values(this.projectiles).filter(proj => proj.state == 1).forEach((projectile) => {
+                    result = projectile.checkCollisions(this.targets.filter(target => target.state == 1), canvas, that);
+                    if (result) {
+                        collision = true;
+                    }
+                    if (projectile.state == 1) {
+                        projectile.drawProjectile(canvas, ctx, that);
+                    }
+                })
 
-        if (collision) {
-            
-            this.score += (10 * this.previousShotsHit);
-            this.previousShotsHit += 1;
-            this.numTargets -= 1;
+                if (collision) {
+
+                    this.score += (10);
+                    // this.previousShotsHit += 1;
+                    this.numTargets -= 1;
+                }
+            } else {
+                Object.values(this.projectiles2).filter(proj => proj.state == 1).forEach((projectile) => {
+                    result = projectile.checkCollisions(this.targets2.filter(target => target.state == 1), canvas, that);
+                    if (result) {
+                        collision = true;
+                    }
+                    if (projectile.state == 1) {
+                        projectile.drawProjectile(canvas, ctx, that);
+                    }
+                })
+
+                if (collision) {
+
+                    this.score2 += (10);
+                    // this.previousShotsHit += 1;
+                    this.numTargets2 -= 1;
+                }
+            }
+
+        } else {
+            Object.values(this.projectiles).filter(proj => proj.state == 1).forEach((projectile) => {
+                result = projectile.checkCollisions(this.targets.filter(target => target.state == 1), canvas, that);
+                if (result) {
+                    collision = true;
+                }
+                if (projectile.state == 1) {
+                    projectile.drawProjectile(canvas, ctx, that);
+                }
+            })
+
+            if (collision) {
+
+                this.score += (10 * this.previousShotsHit);
+                this.previousShotsHit += 1;
+                this.numTargets -= 1;
+            }
         }
+
 
         //TEXT
         ctx.font = '9px Helvetica';
         ctx.fillStyle = 'white';
-        ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
-        ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
-        ctx.fillText(`Score: ${this.score}`, 5, 30)
-        ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
-        ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
-        ctx.fillText(`Score: ${this.score}`, 250, 144);
+        if (this.multiplayer) {
+            let player = this.currentPlayer == 1? 'Player 1' : 'Player 2';
+            let score = this.currentPlayer == 1 ? this.score : this.score2;
 
-        if (this.numTargets < 1) {
-            this.gameWon = true;
-        } else if (this.numShots < 1 && Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1){
-            this.gameLost = true;
+            ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
+            ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
+            ctx.fillText(player, 5, 40)
+            ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
+            ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
+            ctx.fillText(`Score: ${score}`, 250, 144);
+        } else {
+            ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
+            ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
+            ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
+            ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
+            ctx.fillText(`Score: ${this.score}`, 250, 144);
         }
+
+        if (this.multiplayer) {
+            if (this.currentPlayer == 1){
+                if (this.numTargets < 1) {
+                    this.gameWon = true;
+                    this.winner = 'Player 1';
+                } else {
+                    if (this.numTargets2 < 1) {
+                        this.gameWon = true;
+                        this.winner = 'Player 2'
+                    }
+                }
+            }
+
+            if (this.numShots == 0 && Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1) {
+                if (this.score > this.score2) {
+                    this.gameWon = true;
+                    this.winner = 'Player 1';
+                    this.winningScore = this.score;
+                } else if(this.score < this.score2) {
+                    this.gameWon = true;
+                    this.winner = 'Player 2';
+                    this.winningScore = this.score2;
+                } else {
+                    this.gameLost = true;
+                    this.winningScore = this.score;
+                }
+            }  
+        }
+        else {
+            if (this.numTargets < 1) {
+                this.gameWon = true;
+            } else if (this.numShots < 1 && Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1) {
+                this.gameLost = true;
+            }
+        }
+
     }
 }

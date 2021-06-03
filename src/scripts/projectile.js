@@ -13,6 +13,8 @@ export class Projectile {
         this.hit = false;
         this.timer = 1;
         this.state = 1;
+        this.hit  = new Sound('hit-sound');
+        this.miss = new Sound('miss-sound');
     }
 
     // update(power, angle) {
@@ -25,7 +27,7 @@ export class Projectile {
     //     }
     // }
 
-    drawProjectile(canvas, ctx) {
+    drawProjectile(canvas, ctx, game) {
         if (!this.hit) {
             ctx.drawImage(this.projectile, 0, 0, 100, 100, this.xPos, this.yPos, this.xSize, this.ySize);
             this.xPos += this.dx/2;
@@ -37,6 +39,9 @@ export class Projectile {
             this.timer += 1
             if (this.timer > 64) {
                 this.state = 0
+                if (game.multiplayer) {
+                    game.currentPlayer = game.currentPlayer == 1 ? 2 : 1;
+                }
             }
         }
     }
@@ -45,6 +50,9 @@ export class Projectile {
         let that = this;
         if (this.yPos > canvas.height - 25 || this.xPos > canvas.width) {
             this.state = 0;
+            if (game.multiplayer) {
+                game.currentPlayer = game.currentPlayer == 1 ? 2 : 1;
+            }
             game.previousShotsHit = 1;
             return false;
         }
