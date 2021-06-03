@@ -2,7 +2,7 @@ export class Cannon {
     constructor() {
         this.picture = new Image();
         this.picture.src = '../src/images/cannon_spritesheet.png'
-        this.x = -135.75,
+        this.x = -138.75,
         this.y = -64.42,
         this.width = 40,
         this.height= 30,
@@ -48,7 +48,7 @@ export class Cannon {
                 this.rotation = newValue;
                 let radians = this.rotation*(0.01745);
                 let standardRadians = 19.7 * (0.01745);
-                this.x = -150*(Math.cos(radians-standardRadians))
+                this.x = -150*(Math.cos(radians-standardRadians)) - 3;
                 this.y = -150*(Math.sin(radians - standardRadians))
                 
             }
@@ -57,9 +57,9 @@ export class Cannon {
             if (newValue <= 90) {
                 this.rotation = newValue;
                 let radians = this.rotation * (0.01745);
-                let standardRadians = 19.7  * (0.01745);
-                this.x = -150 * (Math.cos(radians - standardRadians))
-                this.y = -150 * (Math.sin(radians - standardRadians))
+                let standardRadians = 19.75  * (0.01745);
+                this.x = -150 * (Math.cos(radians - standardRadians)) -3;
+                this.y = -150 * (Math.sin(radians - standardRadians));
             }
         }
     }
