@@ -101,9 +101,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         e.preventDefault();
         gameStarted = true;
-        let shots = document.getElementById('shots').value;
-        let targets = document.getElementById('targets').value;
-        game = new Game(shots,targets,clouds);
+        let difficulty = document.getElementById('difficulty').value;
+        switch (difficulty) {
+            case 'easy':
+                game = new Game(4, 1, clouds);
+                break;
+            case 'medium':
+                game = new Game(6, 3, clouds);
+                break;
+            case 'hard':
+                game = new Game(8, 5, clouds);
+                break;
+            case 'impossible':
+                game = new Game(10, 9, clouds);
+                break;
+            default:
+                break;
+        }
+        // game = new Game(shots,targets,clouds);
         game.startGame();
         startAnimating(30);
         document.getElementById('start-button').innerHTML = 'Restart';

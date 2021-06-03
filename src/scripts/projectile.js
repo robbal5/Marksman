@@ -11,7 +11,7 @@ export class Projectile {
         this.xSize = 10;
         this.ySize = 10;
         this.hit = false;
-        this.timer = 0;
+        this.timer = 1;
         this.state = 1;
     }
 
@@ -32,7 +32,8 @@ export class Projectile {
             this.dy -= 1;
             this.yPos -= this.dy/3;
         } else {
-            ctx.drawImage(this.projectile, 60 * Math.floor(this.timer/32), 60* Math.floor(this.timer/4), 60, 60, this.xPos, this.yPos, 30, 30)
+            debugger;
+            ctx.drawImage(this.projectile, 64 * Math.floor((this.timer/4)%8), 64* Math.floor(this.timer/32), 60, 60, this.xPos, this.yPos, 30, 30)
             this.timer += 1
             if (this.timer > 64) {
                 this.state = 0

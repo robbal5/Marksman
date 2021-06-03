@@ -69,7 +69,7 @@ export class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(this.sun, canvas.width - 45, 0, 35, 35);
         ctx.fillStyle = 'darkolivegreen';
-        ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
+        ctx.fillRect(0, canvas.height - 30, canvas.width, 30)
         this.clouds.forEach((cloud) => {
             cloud.moveCloud(canvas, ctx);
             cloud.drawCloud(canvas, ctx);
@@ -108,7 +108,7 @@ export class Game {
         })
 
         if (collision) {
-            debugger;
+            
             this.score += (10 * this.previousShotsHit);
             this.previousShotsHit += 1;
             this.numTargets -= 1;
