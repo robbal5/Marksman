@@ -33,7 +33,7 @@ export class Projectile {
             this.yPos -= this.dy/3;
         } else {
             debugger;
-            ctx.drawImage(this.projectile, 64 * Math.floor((this.timer/4)%8), 64* Math.floor(this.timer/32), 60, 60, this.xPos, this.yPos, 30, 30)
+            ctx.drawImage(this.projectile, 64 * Math.floor((this.timer/4)%8), 64* Math.floor(this.timer/32), 60, 60, this.xPos, this.yPos, 20, 20)
             this.timer += 1
             if (this.timer > 64) {
                 this.state = 0

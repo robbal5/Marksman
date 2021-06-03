@@ -21,6 +21,7 @@ export class Game {
         this.firing = false;
         this.gameWon = false;
         this.gameLost = false;
+        
 
     }
 
@@ -59,7 +60,7 @@ export class Game {
                 this.currentPower = newPower;
             }
         }
-        if (key == ' ') {
+        if (key == ' ' && this.numShots > 0) {
             this.firing = true;
         }
     }
