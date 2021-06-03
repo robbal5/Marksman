@@ -21,7 +21,7 @@ export const initialBackground = (canvas, ctx) => {
 
     }
     ctx.fillStyle = 'darkolivegreen';
-    ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
+    ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
     ctx.fillStyle = 'black';
     ctx.font = '15px Times New Roman';
     ctx.fillText('Click Start to Begin', 80, 80)

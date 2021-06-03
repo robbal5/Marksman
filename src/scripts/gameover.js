@@ -1,10 +1,17 @@
 export const gameOver = (game, ctx, canvas) => {
     let finalText, color,  xPos;
     if (game.gameWon) {
+        
         finalText = 'Great shooting, you won!';
         color = 'gold';
         canvas.classList.add('won');
         xPos = 65;
+        let highscore = document.getElementById('highscore');
+        let score = parseInt(highscore.innerHTML.split(' ')[2])
+        debugger;
+        if (score < game.score) {
+            highscore.innerHTML = `High Score: ${game.score}`
+        }
     } else {
         finalText = 'Sorry, you ran out of shots';
         color = 'red';

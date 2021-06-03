@@ -55,17 +55,15 @@
     <div class='user-interaction-container'>
         <form class='user-interaction-form'>
             <div>
-                <label for="shots">Number of shots:</label>
-                <select class='select' name="shots" id="shots">
-                    <option selected value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                <label for="shots">Difficulty</label>
+                <select class='select' name="difficulty" id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                    <option value="impossible">Impossible</option>
                 </select>
             </div>
-            <div>
+            <!-- <div>
                 <label class='select' for="shots">Number of targets:</label>
                 <select name="targets" id="targets">
                     <option selected value="1">1</option>
@@ -74,9 +72,10 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-            </div>
+            </div> -->
 
             <button id='start-button' class='start-button'>Start!</button>
+            <div id='highscore'>High Score: 0</div>
         </form>
 
     </div>
