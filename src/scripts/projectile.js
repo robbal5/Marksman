@@ -43,7 +43,7 @@ export class Projectile {
 
     checkCollisions(targets, canvas, game) {
         let that = this;
-        if (this.yPos > canvas.height - 25) {
+        if (this.yPos > canvas.height - 25 || this.xPos > canvas.width) {
             this.state = 0;
             game.previousShotsHit = 1;
             return false;
