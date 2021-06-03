@@ -56,7 +56,8 @@ export class Projectile {
              && target.yPos + target.size - that.yPos > 0 
              && !that.hit){
                  this.hit = true;
-                 this.yPos -= 8;
+                 this.yPos = target.yPos;
+                 this.xPos = target.xPos;
                 that.projectile.src = '../src/images/explosion.png';
                 target.state = 0;
                 result = true;
