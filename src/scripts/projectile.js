@@ -3,7 +3,7 @@ import {Sound} from './sounds';
 export class Projectile {
     constructor(power, angle) {
         this.projectile = new Image();
-        this.projectile.src = '../src/images/ball.png'; 
+        this.projectile.src = './images/ball.png'; 
         this.xPos = 17;
         this.yPos = 110;
         this.power = power/2;
@@ -73,7 +73,7 @@ export class Projectile {
                  this.hit = true;
                  this.yPos = target.yPos;
                  this.xPos = target.xPos;
-                that.projectile.src = '../src/images/explosion.png';
+                that.projectile.src = './images/explosion.png';
                 target.state = 0;
                 result = true;
             }

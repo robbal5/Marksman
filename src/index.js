@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     const clouds = initialBackground(canvas, ctx);
     const sun = new Image();
-    sun.src = '../src/images/sun.png';
+    sun.src = './images/sun.png';
     setupModal();
     const cannon = new Cannon();
     cannon.drawCannon(canvas, ctx);
