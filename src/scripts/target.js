@@ -1,6 +1,5 @@
 export class Target {
     constructor(xPos, yPos, player) {
-        debugger;
         this.xPos = xPos;
         this.yPos = yPos;
         this.state = 1;
