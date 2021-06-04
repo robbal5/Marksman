@@ -24,6 +24,6 @@ export const initialBackground = (canvas, ctx) => {
     ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
     ctx.fillStyle = 'black';
     ctx.font = '15px Times New Roman';
-    ctx.fillText('Click Start to Begin', 80, 80)
+    ctx.fillText('Click Enter to Begin!', 90, 80)
     return cloudObjs;
 }

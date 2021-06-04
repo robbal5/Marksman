@@ -67,6 +67,10 @@ a {
   width: 100%;
 }
 
+audio {
+  display: none;
+}
+
 /* canvas Images*/
 .canvas-images {
   display: none;
@@ -181,7 +185,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   font-family: $text;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items:flex-start;
 
 }
 .start-button {
@@ -210,6 +214,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   opacity: 0;
   height: 100%;
   width: 100%;
+  z-index: 2;
   
 
     &.open {
@@ -280,8 +285,8 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
-  background-color: $blue;
+  height: 60px;
+  background-image: linear-gradient($yellow,$blue );
 }
 
 

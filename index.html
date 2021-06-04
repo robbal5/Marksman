@@ -30,7 +30,7 @@
         </div>
         <div class='header-about-list'>
             <ul>
-                <li class='header-about-item'><ahref="https://www.linkedin.com/in/robert-s-balistreri/" target='_blank'><i class="fab fa-linkedin-in fa-2x"></i></a></li>
+                <li class='header-about-item'><a href="https://www.linkedin.com/in/robert-s-balistreri/" target='_blank'><i class="fab fa-linkedin-in fa-2x"></i></a></li>
                 <li class='header-about-item'>Designed by: Robby Balistreri</li>
             </ul>
         </div>
@@ -63,6 +63,14 @@
                     <option value="impossible">Impossible</option>
                 </select>
             </div>
+            <div>
+                <label for="multiplayer">Players</label>
+                <select class='select' name="multiplayer" id="multiplayer">
+                    <option value="false">1-player</option>
+                    <option value="true">2-player</option>
+
+                </select>
+            </div>
             <!-- <div>
                 <label class='select' for="shots">Number of targets:</label>
                 <select name="targets" id="targets">
@@ -74,13 +82,19 @@
                 </select>
             </div> -->
 
-            <button id='start-button' class='start-button'>Start!</button>
+            <!-- <button id='start-button' class='start-button'>Start!</button> -->
             <div id='highscore'>High Score: 0</div>
         </form>
 
     </div>
     <footer class='footer'>
-
+        <div class='sounds'>
+            <audio preload='auto' controls='none' id='cannon-sound' src="./src/sounds/cannon.mp3"></audio>
+            <audio preload='auto' controls='none' id='hit-sound' src="./src/sounds/hit.mp3"></audio>
+            <audio preload='auto' controls='none' id='miss-sound' src="./src/sounds/miss.mp3"></audio>
+            <audio preload='auto' controls='none' id='win' src="./src/sounds/winjingle.mp3"></audio>
+            <audio preload='auto' controls='none' id='gameover' src="./src/sounds/GameOver.mp3"></audio>
+        </div>
     </footer>
 
 
