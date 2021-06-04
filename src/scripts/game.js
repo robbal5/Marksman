@@ -222,6 +222,8 @@ export class Game {
         if (this.multiplayer) {
             let player = this.currentPlayer == 1? 'Player 1' : 'Player 2';
             let score = this.currentPlayer == 1 ? this.score : this.score2;
+            ctx.fillStyle = 'darkslategray';
+            ctx.fillRect(0, 0, 55, 40);
             ctx.fillStyle = 'lightgray';
             ctx.fillRect(0, 0, 50, 35)
             ctx.fillStyle = 'black';
@@ -235,8 +237,10 @@ export class Game {
             ctx.fillStyle = 'white'
             ctx.fillText('Multiplayer', 120, 10)
         } else {
+            ctx.fillStyle = 'darkslategray';
+            ctx.fillRect(0, 0, 55, 30);
             ctx.fillStyle = 'lightgray';
-            ctx.fillRect(0, 0, 50, 25)
+            ctx.fillRect(0, 0, 50, 25);
             ctx.fillStyle = 'black';
             ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
             ctx.fillText(`Power: ${this.currentPower}`, 5, 20)

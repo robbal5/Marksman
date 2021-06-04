@@ -73,6 +73,7 @@ audio {
 
 select {
   outline: none;
+  cursor: pointer;
 }
 
 /* canvas Images*/
@@ -112,6 +113,8 @@ select {
     margin: auto;
     &:hover{
       font-weight: 700;
+       color: $yellow;
+      transition: 0.8s;
     } 
   }
   a {

@@ -10,8 +10,8 @@ export class Projectile {
         this.angle = angle;
         this.dy = this.power * Math.sin(this.angle * 0.01745);
         this.dx = this.power/2 * Math.cos(this.angle*0.01745);
-        this.xSize = 10;
-        this.ySize = 10;
+        this.xSize = 8;
+        this.ySize = 8;
         this.hit = false;
         this.timer = 1;
         this.state = 1;
