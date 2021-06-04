@@ -18,7 +18,7 @@ export class Game {
         this.previousShotsHit = 1;
         this.clouds = clouds;
         this.sun = new Image();
-        this.sun.src = '../src/images/sun.png';
+        this.sun.src = './images/sun.png';
         this.firing = false;
         this.gameWon = false;
         this.gameLost = false;

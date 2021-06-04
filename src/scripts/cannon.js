@@ -3,7 +3,7 @@
 export class Cannon {
     constructor() {
         this.picture = new Image();
-        this.picture.src = '../src/images/cannon_spritesheet.png'
+        this.picture.src = './images/cannon_spritesheet.png'
         this.x = -138.75,
         this.y = -64.42,
         this.width = 40,

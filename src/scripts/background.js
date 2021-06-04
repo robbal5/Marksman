@@ -2,12 +2,12 @@ import {Cloud} from './clouds'
 
 export const initialBackground = (canvas, ctx) => {
     const sun = new Image();
-    sun.src = '../src/images/sun.png';
+    sun.src = './images/sun.png';
     sun.onload = () => {
         ctx.drawImage(sun, canvas.width - 45,0 , 35, 35)
     }
     const clouds = new Image();
-    clouds.src = '../src/images/clouds.png';
+    clouds.src = './images/clouds.png';
     const cloudObjs = [new Cloud(30, 25, 0, 0, 390, 220, 40, 30, clouds), 
                         new Cloud(200, 10, 400, 120, 330, 150, 35, 25, clouds),
                         new Cloud(280, 35, 400, 120, 330, 150, 35, 25, clouds),

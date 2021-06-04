@@ -9,9 +9,9 @@ export class Target {
         this.player = player;
         if (player) {
             this.flyUp = new Image();
-            this.flyUp.src = `../src/images/flyup_target${player}.png`;
+            this.flyUp.src = `./images/flyup_target${player}.png`;
             this.flyDown = new Image();
-            this.flyDown.src = `../src/images/flydown_target${player}.png`;
+            this.flyDown.src = `./images/flydown_target${player}.png`;
         }
     }
 
