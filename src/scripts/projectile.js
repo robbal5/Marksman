@@ -69,6 +69,7 @@ export class Projectile {
              && target.yPos + target.size - that.yPos > 0 
              && !that.hit){
                  this.shoot.stop();
+                 this.strike.stop();
                  this.strike.play();
                  this.hit = true;
                  this.yPos = target.yPos;
