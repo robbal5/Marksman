@@ -8,7 +8,7 @@ export const gameOver = (game, ctx, canvas) => {
             xPos =75;
             let highscore = document.getElementById('highscore');
             let score = parseInt(highscore.innerHTML.split(' ')[2])
-            debugger;
+            
             if (score < game.winningScore) {
                 highscore.innerHTML = `High Score: ${game.winningScore}`
             }
@@ -19,7 +19,7 @@ export const gameOver = (game, ctx, canvas) => {
             xPos = 40;
             let highscore = document.getElementById('highscore');
             let score = parseInt(highscore.innerHTML.split(' ')[2])
-            debugger;
+            
             if (score < game.winningScore) {
                 highscore.innerHTML = `High Score: ${game.winningScore}`
             }
@@ -32,10 +32,13 @@ export const gameOver = (game, ctx, canvas) => {
             ctx.font = '10px Fantasy';
             ctx.fillText(`Player 1: ${game.score} points`, xPos + 10, 85)
             ctx.fillText(`Player 2: ${game.score2} points`, xPos + 130, 85);
-
+            ctx.font = '10px Times New Roman';
+            ctx.fillText('Click Enter to play again', 95, 140)
         } else {
             ctx.font = '10px Fantasy';
-            ctx.fillText('Why not give it another shot?', xPos + 5, 85)
+            ctx.fillText('Why not give it another shot?', xPos + 5, 85);
+            ctx.font = '10px Times New Roman';
+            ctx.fillText('Click Enter to play again', 95, 140);
         }
     } else {
         if (game.gameWon) {
@@ -64,10 +67,14 @@ export const gameOver = (game, ctx, canvas) => {
             ctx.font = '10px Fantasy';
             ctx.fillText(`Score: ${game.score}`, xPos + 10, 85)
             ctx.fillText(`Shots remaining: ${game.numShots}`, xPos + 80, 85);
+            ctx.font = '10px Times New Roman';
+            ctx.fillText('Click Enter to play again', 95, 140)
 
         } else {
             ctx.font = '10px Fantasy';
-            ctx.fillText('Why not give it another shot?', xPos + 20, 85)
+            ctx.fillText('Why not give it another shot?', xPos + 20, 85);
+            ctx.font = '10px Times New Roman';
+            ctx.fillText('Click Enter to play again', 95, 140);
         }
     }
 

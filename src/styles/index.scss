@@ -71,6 +71,10 @@ audio {
   display: none;
 }
 
+select {
+  outline: none;
+}
+
 /* canvas Images*/
 .canvas-images {
   display: none;
@@ -171,7 +175,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
       background-image: linear-gradient(rgb(10, 10, 238), rgb(90, 82, 168)); 
     }
     &.lost {
-      background-image: linear-gradient(rgb(1, 1, 17), rgb(112, 112, 112)); 
+      background-image: linear-gradient(rgb(1, 1, 17), rgb(44, 44, 44)); 
 
     }
 }
@@ -289,4 +293,10 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   background-image: linear-gradient($yellow,$blue );
 }
 
+/* Volume */
+
+#mute {
+  cursor: pointer;
+  width: 30px;
+}
 

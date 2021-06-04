@@ -124,6 +124,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
+    document.getElementById('mute').addEventListener('click', (e) => {
+        e.target.classList.toggle('fa-volume-up');
+        e.target.classList.toggle('fa-volume-off')
+        
+        let sounds = document.querySelectorAll('audio');
+        if (sounds[0].muted) {
+            sounds.forEach((sound) => sound.muted = false)
+        } else {
+            sounds.forEach((sound) => sound.muted = true)
+        }
+    })
+
     // if (gameStarted){
     //     startAnimating(30);
     // }

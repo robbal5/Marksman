@@ -85,10 +85,12 @@ export class Game {
             if (this.multiplayer) {
                 if (Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1 &&
                     Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1){
+                        
                         this.shoot.play();
                         this.firing = true;
                     }
             } else{
+                this.shoot.stop();
                 this.shoot.play();
                 this.firing = true;
             }
@@ -214,40 +216,53 @@ export class Game {
 
 
         //TEXT
+        
         ctx.font = '9px Helvetica';
-        ctx.fillStyle = 'white';
+        
         if (this.multiplayer) {
             let player = this.currentPlayer == 1? 'Player 1' : 'Player 2';
             let score = this.currentPlayer == 1 ? this.score : this.score2;
-
+            ctx.fillStyle = 'lightgray';
+            ctx.fillRect(0, 0, 50, 35)
+            ctx.fillStyle = 'black';
             ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
+            
             ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
-            ctx.fillText(player, 5, 40)
+            ctx.fillText(player, 5, 30)
             ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
-            ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
-            ctx.fillText(`Score: ${score}`, 250, 144);
+            ctx.fillText(`Player 1: ${this.numTargets} Targets`, 90, 144);
+            ctx.fillText(`Player 2: ${this.numTargets2} Targets`, 210, 144);
+            ctx.fillStyle = 'white'
+            ctx.fillText('Multiplayer', 120, 10)
         } else {
+            ctx.fillStyle = 'lightgray';
+            ctx.fillRect(0, 0, 50, 25)
+            ctx.fillStyle = 'black';
             ctx.fillText(`Angle: ${this.currentAngle}`, 5, 10)
             ctx.fillText(`Power: ${this.currentPower}`, 5, 20)
             ctx.fillText(`Shots: ${this.numShots}`, 10, 144);
             ctx.fillText(`Targets: ${this.numTargets}`, 130, 144);
             ctx.fillText(`Score: ${this.score}`, 250, 144);
+            ctx.fillStyle = 'white'
+            ctx.fillText('Solo', 135, 10)
         }
 
         if (this.multiplayer) {
-            if (this.currentPlayer == 1){
+            // if (this.currentPlayer == 1){
                 if (this.numTargets < 1) {
+                    this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 1';
                     this.winningScore = this.score;
-                } else {
-                    if (this.numTargets2 < 1) {
+                } else if (this.numTargets2 < 1) {
+                     
+                        this.win.play();
                         this.gameWon = true;
                         this.winner = 'Player 2'
                         this.winningScore = this.score2;
-                    }
+                    
                 }
-            }
+            // }
 
             if (this.numShots == 0 && Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1) {
                 if (this.score > this.score2) {
