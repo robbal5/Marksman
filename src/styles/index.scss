@@ -214,6 +214,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   opacity: 0;
   height: 100%;
   width: 100%;
+  z-index: 2;
   
 
     &.open {

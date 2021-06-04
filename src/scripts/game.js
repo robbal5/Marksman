@@ -2,6 +2,7 @@ import { Target } from "./target";
 import {Cannon } from './cannon';
 import { Projectile } from "./projectile";
 import {Cloud} from './clouds';
+import { Sound } from './sounds';
 
 export class Game {
     constructor(numShots, numTargets, clouds, multiplayer) {
@@ -29,13 +30,16 @@ export class Game {
         this.numTargets2 = numTargets;
         this.winner = undefined;
         this.winningScore = undefined;
+        this.shoot = new Sound('cannon-sound');
+        this.win = new Sound('win');
+        this.lose = new Sound('gameover');
         
 
     }
 
     startGame() {
-        let positionsX = [100, 130, 160, 185, 210, 230, 255, 270, 285]
-        let positionsY = [10, 20, 30, 40 ,50, 10, 20, 30, 40]
+        let positionsX = [100, 130, 160, 185, 210, 230, 255, 270, 285, 265]
+        let positionsY = [10, 20, 30, 40 ,50, 10, 20, 30, 40, 50]
         let target;
         for (let i = 0; i < this.numTargets; i++) {
             let xPos = positionsX.shift();
@@ -77,12 +81,15 @@ export class Game {
             }
         }
         if (key == ' ' && this.numShots > 0) {
+            
             if (this.multiplayer) {
                 if (Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1 &&
                     Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1){
+                        this.shoot.play();
                         this.firing = true;
                     }
             } else{
+                this.shoot.play();
                 this.firing = true;
             }
         }
@@ -122,7 +129,7 @@ export class Game {
         } else {
             this.cannon.drawCannon(canvas, ctx, this.firing);
         }
-        debugger;
+        
         if (this.multiplayer) {
             if (this.currentPlayer == 1) {
                 this.targets.forEach((target) => {
@@ -232,20 +239,24 @@ export class Game {
                 if (this.numTargets < 1) {
                     this.gameWon = true;
                     this.winner = 'Player 1';
+                    this.winningScore = this.score;
                 } else {
                     if (this.numTargets2 < 1) {
                         this.gameWon = true;
                         this.winner = 'Player 2'
+                        this.winningScore = this.score2;
                     }
                 }
             }
 
             if (this.numShots == 0 && Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1) {
                 if (this.score > this.score2) {
+                    this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 1';
                     this.winningScore = this.score;
                 } else if(this.score < this.score2) {
+                    this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 2';
                     this.winningScore = this.score2;
@@ -257,8 +268,10 @@ export class Game {
         }
         else {
             if (this.numTargets < 1) {
+                this.win.play();
                 this.gameWon = true;
             } else if (this.numShots < 1 && Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1) {
+                this.lose.play();
                 this.gameLost = true;
             }
         }

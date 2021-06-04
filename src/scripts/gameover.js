@@ -46,7 +46,7 @@ export const gameOver = (game, ctx, canvas) => {
             xPos = 65;
             let highscore = document.getElementById('highscore');
             let score = parseInt(highscore.innerHTML.split(' ')[2])
-            debugger;
+            
             if (score < game.score) {
                 highscore.innerHTML = `High Score: ${game.score}`
             }

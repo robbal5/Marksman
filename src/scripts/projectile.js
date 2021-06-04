@@ -1,3 +1,5 @@
+import {Sound} from './sounds';
+
 export class Projectile {
     constructor(power, angle) {
         this.projectile = new Image();
@@ -13,8 +15,9 @@ export class Projectile {
         this.hit = false;
         this.timer = 1;
         this.state = 1;
-        this.hit  = new Sound('hit-sound');
+        this.strike  = new Sound('hit-sound');
         this.miss = new Sound('miss-sound');
+        this.shoot = new Sound('cannon-sound');
     }
 
     // update(power, angle) {
@@ -34,7 +37,6 @@ export class Projectile {
             this.dy -= 1;
             this.yPos -= this.dy/3;
         } else {
-            debugger;
             ctx.drawImage(this.projectile, 64 * Math.floor((this.timer/4)%8), 64* Math.floor(this.timer/32), 60, 60, this.xPos, this.yPos, 20, 20)
             this.timer += 1
             if (this.timer > 64) {
@@ -49,7 +51,9 @@ export class Projectile {
     checkCollisions(targets, canvas, game) {
         let that = this;
         if (this.yPos > canvas.height - 25 || this.xPos > canvas.width) {
+            this.shoot.stop();
             this.state = 0;
+            this.miss.play();
             if (game.multiplayer) {
                 game.currentPlayer = game.currentPlayer == 1 ? 2 : 1;
             }
@@ -64,6 +68,8 @@ export class Projectile {
              && target.yPos - (that.yPos + that.ySize) < -5
              && target.yPos + target.size - that.yPos > 0 
              && !that.hit){
+                 this.shoot.stop();
+                 this.strike.play();
                  this.hit = true;
                  this.yPos = target.yPos;
                  this.xPos = target.xPos;

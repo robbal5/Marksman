@@ -1,4 +1,4 @@
-import {Sound} from './sounds';
+
 
 export class Cannon {
     constructor() {
@@ -13,7 +13,7 @@ export class Cannon {
         this.firing = false,
         this.rotation = 45;
         this.state = 0;
-        this.shoot = new Sound('cannon-sound');
+        
     }
 
     drawCannon(canvas, ctx, firing) {
@@ -23,6 +23,7 @@ export class Cannon {
             ctx.translate(canvas.width/2, canvas.height/2)
             ctx.rotate(-this.rotation * 0.01745)
             if (firing) {
+                
                 ctx.drawImage(this.picture, 60*(Math.floor(this.state/3)), 80, 60, 35, this.x, this.y, 25, 12)
                 ctx.translate(0,0)
                 ctx.restore()

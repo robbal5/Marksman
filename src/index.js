@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let difficulty = document.getElementById('difficulty').value;
             let multiplayer = document.getElementById('multiplayer').value;
             let multValue = multiplayer == 'true' ? true : false;
-            debugger;
+            
             switch (difficulty) {
                 case 'easy':
                     game = new Game(4, 2, clouds, multValue);
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     let difficulty = document.getElementById('difficulty').value;
     //     let multiplayer = document.getElementById('multiplayer').value;
     //     let multValue = multiplayer == 'true' ? true : false;
-    //     debugger;
+    //     
     //     switch (difficulty) {
     //         case 'easy':
     //             game = new Game(4, 2, clouds, multValue);
