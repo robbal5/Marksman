@@ -51,7 +51,10 @@ export class Projectile {
     checkCollisions(targets, canvas, game) {
         let that = this;
         if (this.yPos > canvas.height - 25 || this.xPos > canvas.width) {
-            this.shoot.stop();
+            debugger;
+            if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2) {
+                this.shoot.stop();
+            }
             this.state = 0;
             this.miss.play();
             if (game.multiplayer) {
@@ -68,7 +71,9 @@ export class Projectile {
              && target.yPos - (that.yPos + that.ySize) < -5
              && target.yPos + target.size - that.yPos > 0 
              && !that.hit){
-                 this.shoot.stop();
+                if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2) {
+                    this.shoot.stop();
+                }
                  this.strike.stop();
                  this.strike.play();
                  this.hit = true;

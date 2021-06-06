@@ -90,9 +90,11 @@ export class Game {
                         this.firing = true;
                     }
             } else{
-                this.shoot.stop();
-                this.shoot.play();
-                this.firing = true;
+                if (!this.firing) {
+                    this.shoot.stop();
+                    this.shoot.play();
+                    this.firing = true;
+                }
             }
         }
     }

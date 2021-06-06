@@ -37,55 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function animate() {
-        
-        
-
         now = Date.now();
         elapsed = now - then;
-
         if (elapsed > interval) {
-            
             then = now - (elapsed % interval);
-
-            // ctx.clearRect(0,0, canvas.width, canvas.height);
-            // ctx.drawImage(sun, canvas.width - 45, 0, 35, 35);
-            // ctx.fillStyle = 'green';
-            // ctx.fillRect(0, canvas.height - 25, canvas.width, 25)
-            // clouds.forEach((cloud) => { 
-            //         cloud.moveCloud(canvas, ctx);
-            //         cloud.drawCloud(canvas, ctx);
-            // })
-            // cannon.drawCannon(canvas, ctx);
-            // target.drawTarget(canvas, ctx);
-            
-            // if (fire) {
-            //     projectile.drawProjectile(canvas, ctx);  
-            // }
-
-        game.drawGame(canvas, ctx)
-            
+            game.drawGame(canvas, ctx)   
         }
         if (game.gameWon || game.gameLost) {
             gameOver(game, ctx, canvas);
         } else{
             requestAnimationFrame(animate);
-        }
-        
+        }   
     }
 
     document.addEventListener('keydown', (e) => {
         const validGameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '];
-        // if (event.key === 'ArrowLeft') {
-        //     cannon.rotateCannon(false);
-        // }
-        // if (event.key === 'ArrowRight') {
-        //     cannon.rotateCannon(true);
-        // }
-        // if (event.key === ' '){
-        //      fire = true;
-             
-        // }
-        
+
         if (validGameKeys.includes(e.key)){
             game.updateGame(e.key)
         } else if(e.key == 'Enter') {
@@ -111,10 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 default:
                     break;
             }
-            // game = new Game(shots,targets,clouds);
             game.startGame();
             startAnimating(30);
-            // document.getElementById('start-button').innerHTML = 'Restart';
             canvas.classList.remove('lost', 'won')
         } else {
             return;
