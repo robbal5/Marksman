@@ -80,7 +80,7 @@ export class Game {
                 this.currentPower = newPower;
             }
         }
-        if (key == ' ' && this.numShots > 0) {
+        if (key == ' ' && this.numShots > 0 && !this.gameWon && !this.gameLost) {
             
             if (this.multiplayer) {
                 if (Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1 &&
@@ -256,32 +256,36 @@ export class Game {
         if (this.multiplayer) {
             // if (this.currentPlayer == 1){
                 if (this.numTargets < 1) {
+                    this.shoot.stop();
                     this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 1';
                     this.winningScore = this.score;
                 } else if (this.numTargets2 < 1) {
-                     
-                        this.win.play();
-                        this.gameWon = true;
-                        this.winner = 'Player 2'
-                        this.winningScore = this.score2;
+                    this.shoot.stop();
+                    this.win.play();
+                    this.gameWon = true;
+                    this.winner = 'Player 2'
+                    this.winningScore = this.score2;
                     
                 }
             // }
 
             if (this.numShots == 0 && Object.values(this.projectiles2).filter(proj => proj.state == 1).length < 1) {
                 if (this.score > this.score2) {
+                    this.shoot.stop();
                     this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 1';
                     this.winningScore = this.score;
                 } else if(this.score < this.score2) {
+                    this.shoot.stop();
                     this.win.play();
                     this.gameWon = true;
                     this.winner = 'Player 2';
                     this.winningScore = this.score2;
                 } else {
+                    this.shoot.stop();
                     this.gameLost = true;
                     this.winningScore = this.score;
                 }
@@ -289,9 +293,11 @@ export class Game {
         }
         else {
             if (this.numTargets < 1) {
+                this.shoot.stop();
                 this.win.play();
                 this.gameWon = true;
             } else if (this.numShots < 1 && Object.values(this.projectiles).filter(proj => proj.state == 1).length < 1) {
+                this.shoot.stop();
                 this.lose.play();
                 this.gameLost = true;
             }

@@ -52,7 +52,7 @@ export class Projectile {
         let that = this;
         if (this.yPos > canvas.height - 25 || this.xPos > canvas.width) {
             debugger;
-            if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2) {
+            if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2 && !game.firing) {
                 this.shoot.stop();
             }
             this.state = 0;
@@ -71,7 +71,7 @@ export class Projectile {
              && target.yPos - (that.yPos + that.ySize) < -5
              && target.yPos + target.size - that.yPos > 0 
              && !that.hit){
-                if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2) {
+                if (Object.values(game.projectiles).filter(proj => proj.state == 1).length < 2 && !game.firing) {
                     this.shoot.stop();
                 }
                  this.strike.stop();
