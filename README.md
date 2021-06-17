@@ -8,6 +8,7 @@ In Marksman, users can:
 * Interactively shoot at targets on the canvas
 * Provide input to modify the game experience (difficulty)
 * Scale play to allow for single player or multiplayer
+
 ![image info](./images/Marksman_Shot.gif)
 
 In addition, this project includes: 
@@ -16,6 +17,7 @@ In addition, this project includes:
 * Links to external Github and Linkedin pages
 
 ## Display
+
 ![image info](./images/marksman_display.png)
 
 ## Architecture and Technology
@@ -25,8 +27,10 @@ The gameplay utilizing the HTML canvas element. All user inputs are taken into a
 
 ### Custom Collision Detection    
 Custom collision detection equations were used to ensure in sync canvas element movement and display for the user. Both canvas elements and canvas bordering needed to be taken into account. 
+
 ![image info](./images/collision_detection.png)
 
 ### Multiplayer Scalability
 Logic was added to the core gameplay file and associated objects to allow for both single player and multiplayer experienced based on a flexible user input.
+
 ![image info](./images/multiplayer.png)
