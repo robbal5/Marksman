@@ -1,49 +1,25 @@
 Welcome to the Marksman wiki!
 
 ## Background and Overview
-As a kid I always loved to play Tanks. The physics were always fun to play with, and I loved experience of getting better and better as the game gave me more information per shot. Marksman is a spinoff of Tanks, allowing for user input to fire a cannon at targets across the map. Other factors such as number of targets, shots allowed, etc will be available for the user to adjust as well.
+As a kid I always old school 2D shooters. The physics were always fun to play with, and I loved experience of getting better and better as the game gave me more information every shot. Marksman is a spinoff of these retro games, allowing for user input to fire a cannon at targets flying across the map. The game also has adjustable difficulty levels, multiplayer, and sound effects
 
 ## Functionality and MVPs
 In Marksman, users can:
 * Interactively shoot at targets on the canvas
 * Provide input to modify the game experience (difficulty)
-* Scalable play to allow for single player or multiplayer
+* Scale play to allow for single player or multiplayer
 ![image info](./images/Marksman_Shot.gif)
 
-In addition, this project will include: 
+In addition, this project includes: 
+* How to play descriptions
 * Audio accompanying the gameplay
-* Flexibility to adjust the color palette 
 * Links to external Github and Linkedin pages
 
-## Display and File Structure
+## Display
 ![image info](./images/marksman_display.png)
-* src
-    * scripts
-         * headerBar.js
-         * game.js
-         * shooter.js
-         * projectile.js
-         * target.js
-         * game.js
-         * scoreboard.js
-         * gameFactors.js
-         * music.js
-    * assets
-         * audio
-              * fire.mp3
-              * hit.mp3
-              * miss.mp3
-         * images
-              * shooter.png
-              * projectile.png
-              * target.png
-   * index.js
-   * styles  
-       * index.scss
-
 
 ## Architecture and Technology
-The gameplay utilizing the HTML canvas element. All user inputs will be available in standard HTML elements and dynamically adjust the created game. No backend or data will be required for this project. No external libraries will be utilized.
+The gameplay utilizing the HTML canvas element. All user inputs are taken into account via event listeners on the keyboard and cause the created game dynamically adjust. No backend or data is required for this project. No external libraries are utilized.
 
 ## Code Snippets
 
@@ -52,5 +28,5 @@ Custom collision detection equations were used to ensure in sync canvas element 
 ![image info](./images/collision_detection.png)
 
 ### Multiplayer Scalability
-Logic was added to the core gameplay file and associated objects to allow for both singleplayer and multiplayer experienced based on a flexible user input.
+Logic was added to the core gameplay file and associated objects to allow for both single player and multiplayer experienced based on a flexible user input.
 ![image info](./images/multiplayer.png)
