@@ -242,7 +242,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
 
 .modal-container {
   width: 500px;
-  height: 250px;
+  height: 300px;
   background-color:$blue;
   position: relative;
   padding: 30px;
@@ -270,7 +270,7 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
 
   p {
     font-family: $text;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
     
   }
@@ -350,6 +350,46 @@ background-image: linear-gradient(rgb(4, 4, 65), rgb(240, 225, 142));
   transform: rotateY(180deg)
 }
 
+.play-instructions {
+  line-height: 20px;
+  
+}
 
+p.control-section-title {
+  font-weight: bolder;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+.controls {
+  display: flex;
+  justify-content: space-around;
+  height: 75px;
+  width: 90%;
+}
+
+p.key-control {
+  font-size: 12px;
+  line-height: 15px;
+  padding-right: 10px;
+
+  strong {
+    font-size: 13px;
+  }
+}
+
+.key-controls{
+    display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap:wrap;
+  
+}
 
 
